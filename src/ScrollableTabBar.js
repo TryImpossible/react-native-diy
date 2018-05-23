@@ -1,7 +1,7 @@
 
 import React, { Component, PureComponent } from 'react';
 
-import { View, Text, Animated, Easing, StyleSheet, ScrollView, TouchableOpacity, ViewPropTypes } from 'react-native';
+import { View, Text, Animated, Easing, StyleSheet, ScrollView, TouchableOpacity, ViewPropTypes, ColorPropType } from 'react-native';
 
 import PropTypes from 'prop-types';
 
