@@ -46,6 +46,8 @@ export default class ScrollableTabView extends (PureComponent || Component) {
 
   render() {
     const {
+      style,
+      children,
       tabBarPosition,
       tabBarStyle,
       tabs,
@@ -91,7 +93,7 @@ export default class ScrollableTabView extends (PureComponent || Component) {
     })
 
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, { ...style }]}>
         {tabBarPosition === 'top' ? ScrollableTabBarComponent : null}
         <ScrollableView
           ref={ref => this.scrollableView = ref}
