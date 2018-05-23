@@ -1,7 +1,7 @@
 
 import React, { Component, PureComponent } from 'react';
 
-import { View, Animated, Easing, StyleSheet, ViewPropTypes, ColorPropType } from 'react-native';
+import { View, Text, Animated, Easing, StyleSheet, ViewPropTypes, ColorPropType } from 'react-native';
 
 import PropTypes from 'prop-types';
 
@@ -9,7 +9,7 @@ import ScrollableTabBar from './ScrollableTabBar';
 
 import ScrollableView from "./ScrollableView";
 
-import Const, { getSize, __IOS__, __ANDROID__ } from './Const';
+import Const, { getSize, __IOS__, __ANDROID__, getRandomColor } from './Const';
 
 export default class ScrollableTabView extends (PureComponent || Component) {
 
@@ -45,7 +45,7 @@ export default class ScrollableTabView extends (PureComponent || Component) {
   }
 
   render() {
-    const { 
+    const {
       tabBarPosition,
       tabBarStyle,
       tabs,
@@ -60,10 +60,11 @@ export default class ScrollableTabView extends (PureComponent || Component) {
       locked,
       onScroll,
       onScrollEnd,
-      enableScrollAnimation
+      enableScrollAnimation,
+      renderTabBar
     } = this.props;
 
-    const ScrollTabBar = (
+    const ScrollableTabBarComponent = (renderTabBar && renderTabBar()) || (
       <ScrollableTabBar
         ref={ref => this.scrollableTabBar = ref}
         style={tabBarStyle}
@@ -80,9 +81,18 @@ export default class ScrollableTabView extends (PureComponent || Component) {
         tabBarUnderlineStyle={tabBarUnderlineStyle}
         enableScrollAnimation={enableScrollAnimation} />
     )
+
+    const childrenComponent = children && tabs.map((item, index) => {
+      return (
+        <View key={`ScrollableView${index}`} style={{ width: Const.SCREEN_WIDTH, backgroundColor: getRandomColor(), justifyContent: 'center', alignItems: 'center' }}>
+          <Text>{item}</Text>
+        </View>
+      )
+    })
+
     return (
       <View style={styles.container}>
-        { tabBarPosition === 'top' ? ScrollTabBar : null}
+        {tabBarPosition === 'top' ? ScrollableTabBarComponent : null}
         <ScrollableView
           ref={ref => this.scrollableView = ref}
           style={scrollableViewStyle}
@@ -94,17 +104,9 @@ export default class ScrollableTabView extends (PureComponent || Component) {
           }}
           onScrollEnd={onScrollEnd}
           enableScrollAnimation={enableScrollAnimation} >
-          {
-            this.props.tabs.map((item, index) => {
-              return (
-                <View key={`ScrollableView${index}`} style={{ width: Const.SCREEN_WIDTH, backgroundColor: this.getRandomColor(), justifyContent: 'center', alignItems: 'center' }}>
-                  <Text>{item}</Text>
-                </View>
-              )
-            })
-          }
+          {childrenComponent}
         </ScrollableView>
-        { tabBarPosition === 'bottom' ? ScrollTabBar : null}
+        {tabBarPosition === 'bottom' ? ScrollableTabBarComponent : null}
       </View>
     );
   }
