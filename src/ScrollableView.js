@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import Const, { getSize, __IOS__, __ANDROID__ } from './Const';
 
-export default class ScrollableTabView extends (PureComponent || Component) {
+export default class ScrollableView extends (PureComponent || Component) {
 
   static propTypes = {
     style: ViewPropTypes.style, //樣式
