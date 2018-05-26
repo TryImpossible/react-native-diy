@@ -13,7 +13,7 @@ export default class ScrollableTabBar extends (PureComponent || Component) {
 
   static propTypes = {
     style: ViewPropTypes.style, //样式
-    tabs: PropTypes.array, //Tab数组
+    tabs: PropTypes.array.isRequired, //Tab数组
     initialIndex: PropTypes.number, //选中的Tab
     onTabChange: PropTypes.func, //Tab切换方法
     tabBarBackgroundColor: ColorPropType, //Tab背景颜色 

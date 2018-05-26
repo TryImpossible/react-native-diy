@@ -11,6 +11,8 @@ import ScrollableView from "./ScrollableView";
 
 import Const, { getSize, __IOS__, __ANDROID__, getRandomColor } from './Const';
 
+export const TabBarPosition = { top: 'top', bottom: 'bottom', overlayTop: 'overlayTop', overlayBottom: 'overlayBottom' }
+
 export default class ScrollableTabView extends (PureComponent || Component) {
 
   static propTypes = {
@@ -32,7 +34,7 @@ export default class ScrollableTabView extends (PureComponent || Component) {
     enableScrollAnimation: PropTypes.bool, //是否开启滚动动画
 
     renderTabBar: PropTypes.func, //若不使用默认的TabBar, 使用此Props传入
-    tabBarPosition: PropTypes.oneOf(['top', 'bottom', 'overlayTop', 'overlayBottom']), //TabBar位置
+    tabBarPosition: PropTypes.oneOf(Object.values(TabBarPosition)), //TabBar位置
   }
 
   static defaultProps = {
