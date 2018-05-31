@@ -5,11 +5,11 @@ import { View, Text, Animated, Easing, StyleSheet, ViewPropTypes, ColorPropType 
 
 import PropTypes from 'prop-types';
 
-import ScrollableTabBar from './ScrollableTabBar';
+import ScrollableTabBar from './src/ScrollableTabBar';
 
-import ScrollableView from "./ScrollableView";
+import ScrollableView from "./src/ScrollableView";
 
-import Const, { getSize, __IOS__, __ANDROID__, getRandomColor } from './Const';
+import Const, { getSize, __IOS__, __ANDROID__, getRandomColor } from './src/Const';
 
 export const TabBarPosition = { top: 'top', bottom: 'bottom', overlayTop: 'overlayTop', overlayBottom: 'overlayBottom' }
 
