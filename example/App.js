@@ -15,7 +15,7 @@ import {
 
 import ScrollableTabView from 'react-native-enhance-scrollable-tab-view';
 
-const tabs = ['劉備', '诸葛亮', '关羽', '张飞', '马超', '黄忠', '赵云'];
+const tabs = ['劉備', '诸葛亮', '关羽', '张飞', '马超', '黄忠', '赵云', '司马懿', '許褚'];
 
 /**
   * 獲取随机颜色，一般调试使用 
