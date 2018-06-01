@@ -12,7 +12,7 @@ export default class ScrollableView extends (PureComponent || Component) {
   static propTypes = {
     style: ViewPropTypes.style, //樣式
     initialPage: PropTypes.number, //选中的页面
-    locked: PropTypes.bool, //是否能滚动
+    locked: PropTypes.bool, //是否鎖定，不允許滾動
     onScroll: PropTypes.func, //滚动方法
     onScrollEnd: PropTypes.func, //滚动结束方法，即页面选中
     enableScrollAnimation: PropTypes.bool, //是否开启滚动动画
@@ -20,7 +20,7 @@ export default class ScrollableView extends (PureComponent || Component) {
 
   static defaultProps = {
     initialPage: 0, //默认 0
-    locked: true, //默认true
+    locked: false, //默认false
     enableScrollAnimation: false //默认false，调用滚动时效果不太好
   }
 
@@ -40,7 +40,7 @@ export default class ScrollableView extends (PureComponent || Component) {
           showsHorizontalScrollIndicator={false}
           bounces={false}
           pagingEnabled={true}
-          scrollEnabled={locked}
+          scrollEnabled={!locked}
           onScroll={({ nativeEvent }) => {
             const offsetX = nativeEvent.contentOffset.x; //位移距离
             const percent = offsetX / Const.SCREEN_WIDTH; //移动比例
