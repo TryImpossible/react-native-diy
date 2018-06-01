@@ -28,7 +28,7 @@ export default class ScrollableTabBar extends (PureComponent || Component) {
   static defaultProps = {
     tabs: ['劉備', '诸葛亮', '关羽', '张飞', '马超', '黄忠', '赵云', '司马懿'],
     initialTab: 0,
-    tabBarSpace: getSize(12), 
+    tabBarSpace: getSize(12),
     tabBarBackgroundColor: 'green',
     tabBarActiveTextColor: 'red',
     tabBarInactiveTextColor: 'black',
@@ -46,7 +46,7 @@ export default class ScrollableTabBar extends (PureComponent || Component) {
   }
 
   render() {
-    const { 
+    const {
       style,
       tabs,
       tabBarBackgroundColor,
@@ -81,7 +81,7 @@ export default class ScrollableTabBar extends (PureComponent || Component) {
                     this.itemTabWidth[index] = __IOS__ ? getSize(width) : width;
                     if (index == 0) this.changeTabTo(0, 'spring');
                   }}
-                  style={{ ...tabBarTextStyle, color, transform: [{ scale }], marginHorizontal: tabBarSpace  }}>
+                  style={{ ...tabBarTextStyle, color, transform: [{ scale }], marginHorizontal: tabBarSpace }}>
                   {item}
                 </Animated.Text>
               </TouchableOpacity>
@@ -105,7 +105,7 @@ export default class ScrollableTabBar extends (PureComponent || Component) {
       inputRange.push(i);
       if (mode === 'color') {
         outputRange.push(i !== index ? tabBarInactiveTextColor : tabBarActiveTextColor);
-      } else if ('scale'){
+      } else if ('scale') {
         outputRange.push(i !== index ? 1 : 1.1);
       } else {
         outputRange.push(i);
@@ -169,30 +169,32 @@ export default class ScrollableTabBar extends (PureComponent || Component) {
         })
       ];
     } else {
-      let distance = this._countScrollDistance(Math.ceil(index)); //滚动距离
-      let path = tabBarSpace + distance / (Math.ceil(index) || 1) * index; 
+      if (this.itemTabWidth[Math.ceil(index)]) { //存在的時候，執行
+        let distance = this._countScrollDistance(Math.ceil(index)); //滚动距离
+        let path = tabBarSpace + distance / (Math.ceil(index) || 1) * index;
 
-      animations = [
-        Animated[animatedType](this.textColorPath, {
-          toValue: index,
-          easing: Easing.linear,
-          duration: animationDuration
-        }),
-        Animated[animatedType](this.textWidthPath, {
-          toValue: this.itemTabWidth[Math.ceil(index)],
-          easing: Easing.linear,
-          duration: animationDuration
-        }),
-        Animated[animatedType](this.textTranslateXPath, {
-          toValue: path,
-          easing: Easing.linear,
-          duration: animationDuration
-        })
-      ];
+        animations = [
+          Animated[animatedType](this.textColorPath, {
+            toValue: index,
+            easing: Easing.linear,
+            duration: animationDuration
+          }),
+          Animated[animatedType](this.textWidthPath, {
+            toValue: this.itemTabWidth[Math.ceil(index)],
+            easing: Easing.linear,
+            duration: animationDuration
+          }),
+          Animated[animatedType](this.textTranslateXPath, {
+            toValue: path,
+            easing: Easing.linear,
+            duration: animationDuration
+          })
+        ];
+      }
+      Animated.parallel(animations).start();
+
+      this.scrollTabBar(index);
     }
-    Animated.parallel(animations).start();
-
-    this.scrollTabBar(index);
   }
 
 }
