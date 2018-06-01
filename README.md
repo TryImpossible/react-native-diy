@@ -36,8 +36,8 @@
 
 ## render a custom tabbar
 
-```
-import ScrollableTabView from 'react-native-enhance-scrollable-tab-view';
+```javascript
+  import ScrollableTabView from 'react-native-enhance-scrollable-tab-view';
 	
 	const tabs = ['劉備', '诸葛亮', '关羽', '张飞', '马超', '黄忠', '赵云', '司马懿', '許褚'];
 	
@@ -91,6 +91,5 @@ renderTabBar|PropTypes.func|若不使用默认的TabBar, 使用此Props传入
 
 
 ## GIF
-<!--![ios效果圖](https://github.com/TryImpossible/react-native-enhance-scrollable-tab-view/blob/master/example/demo/scrollable-tab-view-ios.gif?raw=true)
+![ios效果圖](https://github.com/TryImpossible/react-native-enhance-scrollable-tab-view/blob/master/example/demo/scrollable-tab-view-ios.gif?raw=true)
 ![android效果圖](https://github.com/TryImpossible/react-native-enhance-scrollable-tab-view/blob/master/example/demo/scrollable-tab-view-android.gif?raw=true)
--->
