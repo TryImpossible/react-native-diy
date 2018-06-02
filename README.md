@@ -78,7 +78,7 @@ tabBarBackgroundColor|ColorPropType|Tab背景顏色，默認`green`|
 tabBarSpace|PropTypes.number|每個Tab的間距，默認12|
 tabBarActiveTextColor|ColorPropType|Tab text選中的顏色，默認`red`|
 tabBarInactiveTextColor |ColorPropType|Tab text非選中的顏色，默認`black`|
-tabBarTextStyle|[(ViewPropTypes.style)](https://facebook.github.io/react-native/docs/view.html#style)|Tab text樣式|
+tabBarTextStyle|PropTypes.object|Tab text樣式|
 tabBarUnderlineStyle|[(ViewPropTypes.style)](https://facebook.github.io/react-native/docs/view.html#style)|Tab 下劃線樣式|
 scrollableViewStyle|[(ViewPropTypes.style)](https://facebook.github.io/react-native/docs/view.html#style)|scrollableView 滾動視圖樣式|
 locked|PropTypes.bools|/是否鎖定，不允許滾動，默認`false`|

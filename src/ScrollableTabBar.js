@@ -20,7 +20,7 @@ export default class ScrollableTabBar extends (PureComponent || Component) {
     tabBarSpace: PropTypes.number, //每个tab的间距
     tabBarActiveTextColor: ColorPropType, //Tab Text选中的颜色 
     tabBarInactiveTextColor: ColorPropType, //Tab Text非选中的颜色 
-    tabBarTextStyle: ViewPropTypes.style, // Tab Text的样式
+    tabBarTextStyle: PropTypes.object, // Tab Text的样式
     tabBarUnderlineStyle: ViewPropTypes.style, // Tab 下划线的样式
     enableScrollAnimation: PropTypes.bool, //是否开启滚动动画
   }
@@ -59,7 +59,7 @@ export default class ScrollableTabBar extends (PureComponent || Component) {
     return (
       <ScrollView
         ref={ref => this.scrollableTabBar = ref}
-        style={{ ...style, maxWidth: Const.SCREEN_WIDTH, minHeight: getSize(44), flexGrow: 0, backgroundColor: tabBarBackgroundColor, }}
+        style={{ maxWidth: Const.SCREEN_WIDTH, height: getSize(44), ...style, flexGrow: 0, backgroundColor: tabBarBackgroundColor, }}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         bounces={false} >

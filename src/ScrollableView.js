@@ -45,6 +45,11 @@ export default class ScrollableView extends (PureComponent || Component) {
             const offsetX = nativeEvent.contentOffset.x; //位移距离
             const percent = offsetX / Const.SCREEN_WIDTH; //移动比例
             onScroll && onScroll(percent);
+            
+            //enableScrollAnimation为false时，不会执行 onMomentumScrollEnd 方法
+            if (Number.isSafeInteger(percent) && percent >= 0) {
+              onScrollEnd && onScrollEnd(percent);
+            }
           }}
           onMomentumScrollEnd={({ nativeEvent }) => {
             const offsetX = nativeEvent.contentOffset.x; //位移距离
