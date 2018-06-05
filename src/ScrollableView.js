@@ -30,7 +30,7 @@ export default class ScrollableView extends (PureComponent || Component) {
 
   render() {
     const { style, initialPage, locked, onScroll, onScrollEnd, children = [] } = this.props;
-    if (__IOS__) {
+    if (__IOS__ && children.length > 0) {
       return (
         <FlatList
           ref={ref => this.flatList = ref}
@@ -60,7 +60,7 @@ export default class ScrollableView extends (PureComponent || Component) {
           renderItem={({ item, index }) => children[index]}
         />
       )
-    } else if (__ANDROID__) {
+    } else if (__ANDROID__ && children.length > 0) {
       return (
         <ViewPagerAndroid
           ref={ref => this.viewPager = ref}
