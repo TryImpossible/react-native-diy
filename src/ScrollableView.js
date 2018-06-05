@@ -34,7 +34,7 @@ export default class ScrollableView extends (PureComponent || Component) {
       return (
         <FlatList
           ref={ref => this.flatList = ref}
-          style={{ ...style, flexGrow: 1, width: Const.SCREEN_WIDTH }}
+          style={{ flexGrow: 1, width: Const.SCREEN_WIDTH, ...style }}
           data={children}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
@@ -64,12 +64,18 @@ export default class ScrollableView extends (PureComponent || Component) {
       return (
         <ViewPagerAndroid
           ref={ref => this.viewPager = ref}
-          style={{ ...style, flexGrow: 1, width: Const.SCREEN_WIDTH }}
+          style={{ flexGrow: 1, width: Const.SCREEN_WIDTH, ...style }}
           scrollEnabled={locked}
           keyboardDismissMode="on-drag"
           onPageScroll={({ nativeEvent }) => {
             const { offset, position } = nativeEvent; 
-            onScroll && onScroll(position + offset);
+            const percent = offset + position;
+            onScroll && onScroll(percent);
+
+             // setPage()和setPageWithoutAnimation()不会回调onPageSelected，因此在这里处理
+             if (Number.isSafeInteger(percent) && percent >= 0) {
+              onScrollEnd && onScrollEnd(percent);
+            }
           }}
           onPageSelected={({ nativeEvent }) => {
             const { offset, position } = nativeEvent; 
