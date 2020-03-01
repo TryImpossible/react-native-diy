@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text, AppRegistry} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import moment from 'moment';
 
 const styles = StyleSheet.create({
@@ -18,4 +18,4 @@ const Business = () => (
   </View>
 );
 
-AppRegistry.registerComponent('business1', () => Business);
+export default Business;

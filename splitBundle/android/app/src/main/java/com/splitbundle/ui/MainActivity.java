@@ -2,7 +2,6 @@ package com.splitbundle.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -58,18 +57,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete() {
                 final CatalystInstance catalystInstance = mReactInstanceManage.getCurrentReactContext().getCatalystInstance();
-                JSBundleLoaderUtil.loadScriptFromAssets(catalystInstance, getApplicationContext(), "assets://business1.android.bundle", false);
+                JSBundleLoaderUtil.loadScriptFromAssets(catalystInstance, getApplicationContext(), "assets://app1.android.bundle", false);
                 Toast.makeText(MainActivity.this, "业务包1加载完成", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, Business1Activity.class));
+                startActivity(new Intent(MainActivity.this, App1Activity.class));
             }
         });
     }
 
     public void onClickBusiness2(View view) {
-        startActivity(new Intent(this, Business2Activity.class));
+        startActivity(new Intent(this, App2Activity.class));
     }
 
     public void onClickBusiness3(View view) {
-        startActivity(new Intent(this, Business3Activity.class));
+        startActivity(new Intent(this, App3Activity.class));
     }
 }

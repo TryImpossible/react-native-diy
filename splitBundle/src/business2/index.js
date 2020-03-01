@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, AppRegistry} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,9 +14,9 @@ class Business extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>RN业务模块3</Text>
+        <Text>RN业务模块2</Text>
       </View>
     );
   }
 }
-AppRegistry.registerComponent('business3', () => Business);
+export default Business;

@@ -1,7 +1,6 @@
 package com.splitbundle.utils;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 
 import com.facebook.react.bridge.CatalystInstance;
 import com.facebook.react.bridge.CatalystInstanceImpl;
@@ -14,6 +13,10 @@ public class JSBundleLoaderUtil {
     // 记录加载的JSBundle
     private static Set<String> sJSBundleSet = new HashSet<>();
 
+    public static void loadScriptFromAssets(CatalystInstance catalystInstance, Context context, String assetURL, boolean loadSynchronously) {
+        loadScriptFromAssets(catalystInstance, context, assetURL, loadSynchronously, true);
+    }
+
     /**
      * 从Assets目录下加载
      *
@@ -21,10 +24,11 @@ public class JSBundleLoaderUtil {
      * @param context
      * @param assetURL
      * @param loadSynchronously
+     * @param isCheck
      */
-    public static void loadScriptFromAssets(CatalystInstance catalystInstance, Context context, String assetURL, boolean loadSynchronously) {
+    public static void loadScriptFromAssets(CatalystInstance catalystInstance, Context context, String assetURL, boolean loadSynchronously, boolean isCheck) {
         // 判断是否加载，防止重复加载
-        if (sJSBundleSet.contains(assetURL)) {
+        if (isCheck && sJSBundleSet.contains(assetURL)) {
             return;
         }
 
@@ -34,7 +38,13 @@ public class JSBundleLoaderUtil {
         }
         ((CatalystInstanceImpl) catalystInstance).loadScriptFromAssets(context.getAssets(), source, loadSynchronously);
 
-        sJSBundleSet.add(assetURL);
+        if (isCheck) {
+            sJSBundleSet.add(source);
+        }
+    }
+
+    public static void loadScriptFromFile(CatalystInstance catalystInstance, String fileName, String sourceURL, boolean loadSynchronousl) {
+        loadScriptFromFile(catalystInstance, fileName, sourceURL, loadSynchronousl, true);
     }
 
     /**
@@ -44,16 +54,19 @@ public class JSBundleLoaderUtil {
      * @param fileName          文件的绝对路径
      * @param sourceURL         文件名称
      * @param loadSynchronously
+     * @param isCheck
      */
-    public static void loadScriptFromFile(CatalystInstance catalystInstance, String fileName, String sourceURL, boolean loadSynchronously) {
+    public static void loadScriptFromFile(CatalystInstance catalystInstance, String fileName, String sourceURL, boolean loadSynchronously, boolean isCheck) {
         // 判断是否加载，防止重复加载
-        if (sJSBundleSet.contains(sourceURL)) {
+        if (isCheck && sJSBundleSet.contains(sourceURL)) {
             return;
         }
 
         ((CatalystInstanceImpl) catalystInstance).loadScriptFromFile(fileName, sourceURL, loadSynchronously);
 
-        sJSBundleSet.add(sourceURL);
+        if (isCheck) {
+            sJSBundleSet.add(sourceURL);
+        }
     }
 
     /**

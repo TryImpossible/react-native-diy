@@ -4,11 +4,11 @@ import com.facebook.react.ReactActivity;
 
 import androidx.annotation.Nullable;
 
-public class Business1Activity extends ReactActivity {
+public class App1Activity extends ReactActivity {
 
     @Nullable
     @Override
     protected String getMainComponentName() {
-        return "business1";
+        return "app1";
     }
 }

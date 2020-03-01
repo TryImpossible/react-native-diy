@@ -1,6 +1,6 @@
 {
-  "basic.js": 0,
-  "business1.js": 100000,
-  "business2.js": 200000,
-  "business3.js": 300000
+  "basics.js": 400000,
+  "app1.js": 100000,
+  "app2.js": 200000,
+  "app3.js": 300000
 }

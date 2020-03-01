@@ -21,19 +21,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.Business1Activity"
+            android:name=".ui.App1Activity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="business1"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.Business2Activity"
+            android:name=".ui.App2Activity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="business2"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.Business3Activity"
+            android:name=".ui.App3Activity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="business2"
             android:screenOrientation="portrait"

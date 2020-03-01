@@ -14,39 +14,73 @@ const projectRoot = path.resolve(__dirname, '../');
 // moduleId的配置文件，固定文件名
 const moduleIdConfigFilePath = path.join(__dirname, '/moduleIdConfig.json');
 
-// 打基础包的入口文件，固定文件名
-const basicEntryFile = 'basic.js';
+// 过滤的基准包配置文件，固定文件名
+const filterConfigFilePath = path.join(__dirname, './filterConfig.json');
 
-// 基础包中的module和id的映射文件，固定文件名
-const basicModuleToIdMapFilePath = path.join(
-  __dirname,
-  '/basicModuleToIdMap.json',
-);
+// 打包入口配置文件，固定文件名
+const entryConfigFilePath = path.join(__dirname, './entryConfig.json');
 
-// 待打包的文件，默认打基础包, 根据getModulesRunBeforeMainModule修改
-let entryFile = basicEntryFile;
+// 打包产物记录路径
+const recordPath = path.join(__dirname, 'record');
 
+// 过滤基准包中module和id的映射，默认空对象
+let filterModuleToIdMap = {};
 // module和id的映射文件
-let moduleToIdMapFilePath = basicModuleToIdMapFilePath;
+let moduleToIdMapFilePath;
+// moduleId，根据entryFile查找moduleIdConfig.json中的初始值
+let nextModuleId = 0;
 
-// moduleId，默认取moduleIdConfig.json中的初始值
-let nextModuleId = require(moduleIdConfigFilePath)[entryFile];
-// 由于递增后再生成moduleToId,这里先减去1
-nextModuleId--;
-
+/**
+ * 初始化数据
+ */
 function initData() {
-  if (entryFile.indexOf('basic') < 0) {
-    // 打业务包，修改xxxModuleToIdMap.json文件名
-    const fileName =
-      entryFile.substring(0, entryFile.indexOf('.')) + 'ModuleToIdMap.json';
-    // module和id的映射文件
-    moduleToIdMapFilePath = path.join(__dirname, fileName);
+  // 是否创建record目录
+  if (!fs.existsSync(recordPath)) {
+    fs.mkdirSync(recordPath);
   }
 
-  // 当前的moduleId，默认取moduleIdConfig.json中的初始值
-  const currentModuleId = require(moduleIdConfigFilePath)[entryFile];
+  // 查找过滤的基准包
+  let filterConfig = fs.readFileSync(filterConfigFilePath, 'utf-8');
+  filterConfig = JSON.parse(filterConfig);
+  const filterConfigFiles = filterConfig.map(item => {
+    const fileName =
+      item.substring(0, item.indexOf('.')) + 'ModuleToIdMap.json';
+    return path.join(recordPath, fileName);
+  });
+  // 遍历过滤的基准包，合并所有待过滤ModuleToId
+  filterConfigFiles.forEach(item => {
+    if (fs.existsSync(item)) {
+      const content = fs.readFileSync(item, 'utf-8');
+      if (content && content.length > 0) {
+        filterModuleToIdMap = Object.assign(
+          filterModuleToIdMap,
+          JSON.parse(content),
+        );
+      }
+    }
+  });
+
+  let entryConfig = fs.readFileSync(entryConfigFilePath, 'utf-8');
+  if (!entryConfig) {
+    logger.error('\n' + 'entryConfig.json中缺少打包入口文件，请添加');
+    process.exit();
+  }
+  entryConfig = JSON.parse(entryConfig);
+  logger.info(
+    '\n' + 'entryFilePath: ' + entryConfig['path'],
+    'entryFileName: ' + entryConfig['name'],
+    'entryFilePrefix: ' + entryConfig['prefix'],
+  );
+
+  // 修改`${entryFile}ModuleToIdMap.json`文件名
+  const fileName = entryConfig['prefix'] + 'ModuleToIdMap.json';
+  // entryFile的module和id的映射文件
+  moduleToIdMapFilePath = path.join(recordPath, fileName);
+
+  // 当前的moduleId，默认根据entryFile取moduleIdConfig.json中的初始值
+  const currentModuleId = require(moduleIdConfigFilePath)[entryConfig['name']];
   if (typeof currentModuleId !== 'number') {
-    logger.error('\n' + 'moduleIdConfig.json中缺少打包入口文件，请添加');
+    logger.error('\n' + 'moduleIdConfig.json中缺少模块索引，请添加');
     process.exit();
   }
   // 由于递增后再生成moduleId,这里先减去1
@@ -63,30 +97,22 @@ function createModuleIdFactory() {
   // entryFile文件module和id的映射，默认空对象
   let moduleToIdMap = {};
 
+  initData();
+
   /**
    * @param modulepath metro回传的
    */
   return function(modulepath) {
-    // xxxModuleToIdMap.json是否存在
+    allModuleToIdMap = Object.assign(allModuleToIdMap, filterModuleToIdMap);
+
+    // `${entryFile}ModuleToIdMap.json`是否存在
     if (fs.existsSync(moduleToIdMapFilePath)) {
-      // 读取xxxModuleToIdMap.json文件，并赋值
+      // 读取`${entryFile}ModuleToIdMap.json`，并赋值
       const content = fs.readFileSync(moduleToIdMapFilePath, 'utf-8');
       if (content && content.length > 0) {
         moduleToIdMap = JSON.parse(content);
+        // 合并当前的moduleToId
         allModuleToIdMap = Object.assign(allModuleToIdMap, moduleToIdMap);
-      }
-      if (entryFile.indexOf('basic') < 0) {
-        // 打业务包时，需合并基础包查找id
-        const basicContent = fs.readFileSync(
-          basicModuleToIdMapFilePath,
-          'utf-8',
-        );
-        if (basicContent && basicContent.length > 0) {
-          allModuleToIdMap = Object.assign(
-            allModuleToIdMap,
-            JSON.parse(basicContent),
-          );
-        }
       }
     }
     // 根据modulepath的相对路径查找对应id
@@ -122,12 +148,7 @@ function createModuleIdFactory() {
 function getModulesRunBeforeMainModule(entryFilePath) {
   let position = entryFilePath.lastIndexOf(path.sep);
   position = position > -1 ? position + 1 : 0;
-  entryFile = entryFilePath.substr(position);
-  initData();
-  logger.info(
-    '\n' + 'entryFilePath: ' + entryFilePath,
-    'entryFile: ' + entryFile,
-  );
+  const entryFile = entryFilePath.substr(position);
   return [];
 }
 
@@ -138,13 +159,9 @@ function getModulesRunBeforeMainModule(entryFilePath) {
  * @param {*} module
  */
 function processModuleFilter(module) {
-  if (entryFile.indexOf('basic') === 0) {
-    // 打基础包不过虑模块
+  if (Object.values(filterModuleToIdMap).length === 0) {
+    // 过滤基准包中module和id的映射为空，则不过滤当前entryFile
     return true;
-  }
-  if (!fs.existsSync(basicModuleToIdMapFilePath)) {
-    logger.warn('请先打基础包');
-    process.exit();
   }
   const modulepath = module['path'];
   if (
@@ -157,23 +174,19 @@ function processModuleFilter(module) {
   ) {
     return false;
   }
+
   if (modulepath.indexOf(path.join('/node_modules/')) > 0) {
     // 输出类型为js/script/virtual的模块不能过滤，一般此类型的文件为核心文件，
     // 如InitializeCore.js。每次加载bundle文件时都需要用到。
     if (path.join('js/script/virtual') == module['output'][0]['type']) {
       return true;
     }
-    // 根据modulepath的相对路径查找对应id，过虑基础包
-    const relativePath = path.relative(projectRoot, modulepath);
-    let baiscModuleToIdMap = fs.readFileSync(
-      basicModuleToIdMapFilePath,
-      'utf-8',
-    );
-    baiscModuleToIdMap = JSON.parse(baiscModuleToIdMap);
-    const currentModuleId = baiscModuleToIdMap[relativePath];
-    if (typeof currentModuleId === 'number') {
-      return false;
-    }
+  }
+  // 根据modulepath的相对路径查找对应id，过虑基准包
+  const relativePath = path.relative(projectRoot, modulepath);
+  const currentModuleId = filterModuleToIdMap[relativePath];
+  if (typeof currentModuleId === 'number') {
+    return false;
   }
   return true;
 }
@@ -194,6 +207,6 @@ module.exports = {
   serializer: {
     createModuleIdFactory: createModuleIdFactory,
     processModuleFilter: processModuleFilter,
-    getModulesRunBeforeMainModule: getModulesRunBeforeMainModule,
+    // getModulesRunBeforeMainModule: getModulesRunBeforeMainModule,
   },
 };
