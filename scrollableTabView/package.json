@@ -1,0 +1,39 @@
+{
+  "name": "react-native-enhance-scrollable-tab-view",
+  "version": "0.0.1",
+  "description": "ScrollableTabBar for React Native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-native": "^0.55.4"
+  },
+  "keywords": [
+    "react-component",
+    "react-native",
+    "ios",
+    "android",
+    "ScrollableTabView",
+    "ScrollableView",
+    "ScrollableTabBar",
+    "viewPager",
+    "TabBar"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TryImpossible/react-native-enhance-scrollable-tab-view.git"
+  },
+  "author": {
+    "name": "try",
+    "email": "865068275@qq.com",
+    "url": "https://github.com/TryImpossible"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TryImpossible/react-native-enhance-scrollable-tab-view/issues"
+  },
+  "homepage": "https://github.com/TryImpossible/react-native-enhance-scrollable-tab-view#readme"
+}
