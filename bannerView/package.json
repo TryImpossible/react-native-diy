@@ -1,0 +1,37 @@
+{
+  "name": "react-native-bynn-banner",
+  "version": "0.0.1",
+  "description": "Banner for ReactNative",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-native": "^0.55.4"
+  },
+  "keywords": [
+    "react-component",
+    "react-native",
+    "ios",
+    "android",
+    "BannerView",
+    "Indicator",
+    "Banner"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TryImpossible/react-native-bynn-banner.git"
+  },
+  "author": {
+    "name": "try",
+    "email": "865068275@qq.com",
+    "url": "https://github.com/TryImpossible"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TryImpossible/react-native-bynn-banner/issues"
+  },
+  "homepage": "https://github.com/TryImpossible/react-native-bynn-banner#readme"
+}
