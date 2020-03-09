@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.facebook.react.BaseReactActivity;
+import com.facebook.react.MyReactActivity;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.bridge.CatalystInstance;
 import com.facebook.react.bridge.ReactContext;
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         MainApplication.initializeFlipper(this); // Remove this line if you don't want Flipper enabled
     }
 
-    private void initReactContext(BaseReactActivity.ReactContextListener listener) {
+    private void initReactContext(MyReactActivity.ReactContextListener listener) {
         mReactInstanceManage = ((MainApplication) getApplication()).getReactNativeHost().getReactInstanceManager();
         if (!mReactInstanceManage.hasStartedCreatingInitialContext()) {
             mReactInstanceManage.addReactInstanceEventListener(new ReactInstanceManager.ReactInstanceEventListener() {
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickBusiness1(View view) {
-        initReactContext(new BaseReactActivity.ReactContextListener() {
+        initReactContext(new MyReactActivity.ReactContextListener() {
             @Override
             public void onComplete() {
                 final CatalystInstance catalystInstance = mReactInstanceManage.getCurrentReactContext().getCatalystInstance();

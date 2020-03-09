@@ -40,7 +40,11 @@ function input(prompt, isAutoClose = true) {
   });
 }
 
-function main(filterFiles, entryFilePath) {
+function buildCmd(platform, entryFilePath, prefix) {
+  return `react-native bundle --dev false --platform ${platform} --entry-file ${entryFilePath} --bundle-output ./dist/${platform}/${prefix}.${platform}.bundle --assets-dest ./dist/${platform} --minify true --config split_bundle/metro.config.js --verbose true`;
+}
+
+function main(filterFiles, entryFilePath, platform) {
   logger.info('filterFiles: ' + filterFiles, 'entryFilePath: ' + entryFilePath);
 
   let filterConfig = [];
@@ -96,7 +100,18 @@ function main(filterFiles, entryFilePath) {
     try {
       logger.info('---开始打包---\n');
 
-      const cmd = `react-native bundle --dev false --platform android --entry-file ${entryFilePath} --bundle-output ./dist/android/${prefix}.android.bundle --assets-dest ./dist/android --minify true --config split_bundle/metro.config.js --verbose true`;
+      const buildPlatformCmd = function(platform) {
+        return buildCmd(platform, entryFilePath, prefix);
+      };
+      let cmd;
+      if (platform === 'android') {
+        cmd = buildPlatformCmd('android');
+      } else if (platform === 'ios') {
+        cmd = buildPlatformCmd('ios');
+      } else if (platform === 'all') {
+        cmd = buildPlatformCmd('android') + ' && ' + buildPlatformCmd('ios');
+      }
+
       logger.info(cmd);
       childprocess.execSync(cmd).toString();
       logger.info('---打包成功---');
@@ -119,14 +134,18 @@ function main(filterFiles, entryFilePath) {
     '请输入待打包的文件路径（必传），例如./src/basics.js' + '\n',
     false,
   );
-
-  main(filterFiles, entryFilePath);
+  const platform = await input(
+    '请输入待打包的平台类型（必传），all、android、ios三选一，默认android' +
+      '\n',
+    false,
+  );
+  main(filterFiles, entryFilePath, platform);
 })();
 
 // /**
 //  * 命令行参数
 //  */
 // (function() {
-//   [filterFiles, entryFilePath] = process.argv.splice(2);
-//   main(filterFiles, entryFilePath);
+//   [filterFiles, entryFilePath, platform] = process.argv.splice(2);
+//   main(filterFiles, entryFilePath, platform);
 // })();

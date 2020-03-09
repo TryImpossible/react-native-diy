@@ -1,7 +1,7 @@
 package com.splitbundle.ui;
 
-import com.facebook.react.BaseReactActivity;
 import com.facebook.react.JSBundleBean;
+import com.facebook.react.MyReactActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class App3Activity extends BaseReactActivity {
+public class App3Activity extends MyReactActivity {
     @Nullable
     @Override
     protected String getMainComponentName() {
@@ -18,8 +18,8 @@ public class App3Activity extends BaseReactActivity {
 
     @NonNull
     @Override
-    protected  JSBundleBean.LoaderType getJSBundleLoaderType() {
-        return  JSBundleBean.LoaderType.ASSET;
+    protected JSBundleBean.LoaderType getJSBundleLoaderType() {
+        return JSBundleBean.LoaderType.ASSET;
     }
 
     @NonNull
@@ -33,5 +33,11 @@ public class App3Activity extends BaseReactActivity {
     protected List<JSBundleBean> getJSBundle() {
         JSBundleBean jsBundle = new JSBundleBean(JSBundleBean.LoaderType.ASSET, "assets://app2.android.bundle");
         return Arrays.asList(jsBundle);
+    }
+
+    @NonNull
+    @Override
+    protected boolean getUseDeveloperSupport() {
+        return false;
     }
 }
