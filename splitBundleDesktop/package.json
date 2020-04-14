@@ -1,0 +1,27 @@
+{
+  "name": "splitbundledesktop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "packager": "electron-packager . 'splitbundledesktop' --platform=win32 --arch=x64 --icon=smile.png --out=./dist --asar --app-version=1.0.0",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^8.1.1",
+    "electron-builder": "^22.3.6",
+    "electron-packager": "^14.2.1",
+    "electron-updater": "^4.2.4"
+  },
+  "build": {
+    "productName": "splitBundleDesktop",
+    "appId": "com.barry.splitBundleDesktop"
+  }
+}
