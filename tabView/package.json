@@ -1,0 +1,42 @@
+{
+  "name": "@react-native-diy/tabview",
+  "version": "1.0.0",
+  "description": "TabView for React Native",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@react-native-community/viewpager": "^4.0.0",
+    "react": "^16.13.1",
+    "react-native": "0.62.2",
+    "react-native-web": "^0.12.2"
+  },
+  "keywords": [
+    "react-component",
+    "react-native",
+    "ios",
+    "android",
+    "ScrollableTabView",
+    "ScrollableView",
+    "ScrollableTabBar",
+    "ViewPager",
+    "TabBar",
+    "TabItem",
+    "TabView"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:TryImpossible/react-native-diy.git"
+  },
+  "author": {
+    "name": "try",
+    "email": "865068275@qq.com",
+    "url": "https://github.com/TryImpossible"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TryImpossible/react-native-diy/issues"
+  },
+  "homepage": "https://github.com/TryImpossible/react-native-diy/issuesreadme"
+}
