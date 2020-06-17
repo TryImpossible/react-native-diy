@@ -4,13 +4,24 @@
   "description": "TabView for React Native",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d dist -x \".ts, .tsx\"",
+    "dist": "babel ./src --out-dir dist --extensions '.ts , .tsx'"
   },
   "dependencies": {
     "@react-native-community/viewpager": "^4.0.0",
     "react": "^16.13.1",
     "react-native": "0.62.2",
     "react-native-web": "^0.12.2"
+  },
+  "devDependencies": {
+    "@react-native-community/eslint-config": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
+    "eslint": "^6.5.1",
+    "eslint-plugin-react-hooks": "^4.0.4",
+    "prettier": "^2.0.4",
+    "typescript": "^3.8.3"
   },
   "keywords": [
     "react-component",
