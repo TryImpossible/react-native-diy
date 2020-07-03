@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, ToolbarAndroidComponent } from 'react-native';
+import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar } from 'react-native';
 
 import {
   Header,
