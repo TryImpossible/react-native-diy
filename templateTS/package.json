@@ -1,0 +1,19 @@
+{
+  "name": "react-native-diy-ts-template",
+  "version": "0.0.1",
+  "description": "A Custom TS Template For React-Native",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:TryImpossible/react-native-diy.git"
+  },
+  "author": {
+    "name": "try",
+    "email": "865068275@qq.com",
+    "url": "https://github.com/TryImpossible"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TryImpossible/react-native-diy/issues"
+  },
+  "homepage": "https://github.com/TryImpossible/react-native-diy/blob/master/templateJs/README.md"
+}
