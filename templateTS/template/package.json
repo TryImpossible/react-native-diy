@@ -41,7 +41,11 @@
     "react-test-renderer": "16.11.0",
     "typescript": "^3.8.3"
   },
-  "husky": { "hooks": { "pre-commit": "yarn run lint-staged" } },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,md,graphql}": [
       "yarn lint",
