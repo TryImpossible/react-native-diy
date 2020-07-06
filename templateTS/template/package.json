@@ -7,9 +7,16 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "prettier": "prettier --write src/**",
+    "tsc": "tsc --noEmit",
+    "image": "node local-cli/generator/imagescript.js",
+    "svg": "node local-cli/generator/svgscript.js"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "crypto-js": "^4.0.0",
+    "lodash": "^4.17.15",
     "react": "16.11.0",
     "react-native": "0.62.2"
   },
@@ -17,7 +24,11 @@
     "@babel/core": "^7.6.2",
     "@babel/runtime": "^7.6.2",
     "@react-native-community/eslint-config": "^1.0.0",
+    "@types/axios": "^0.14.0",
+    "@types/crypto-js": "^3.1.47",
     "@types/jest": "^24.0.24",
+    "@types/lodash": "^4.14.157",
+    "@types/node": "^14.0.14",
     "@types/react-native": "^0.62.0",
     "@types/react-test-renderer": "16.9.2",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
@@ -26,19 +37,16 @@
     "eslint": "^6.5.1",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.58.0",
-    "react-test-renderer": "16.11.0",
     "prettier": "^2.0.4",
+    "react-test-renderer": "16.11.0",
     "typescript": "^3.8.3"
   },
-  "jest": {
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
+  "husky": { "hooks": { "pre-commit": "yarn run lint-staged" } },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,md,graphql}": [
+      "yarn lint",
+      "yarn prettier",
+      "git add --force"
     ]
   }
 }

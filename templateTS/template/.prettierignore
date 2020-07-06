@@ -1,0 +1,3 @@
+# 忽略 tsconfig.json
+tsconfig.json
+package.json
