@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example</title>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      #show {
+        width: 100%;
+        height: 100px;
+        background-color: #eeeeee;
+        padding: 8px 10px;
+      }
+      button {
+        display: block;
+        margin: 10px auto;
+      }
+    </style>
+    <script>
+      async function call() {
+        if (!window.invoker) {
+          alert('当前环境不支持invoker');
+          return;
+        }
+        const reuslt = await window.invoker.call({action: 'hello'});
+        document.getElementById('show').innerText = reuslt;
+      }
+    </script>
+  </head>
+  <body>
+    <div id="show">这里显示来自native的信息</div>
+    <button type="button" onclick="call()">向native打招呼</button>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "@react-native-diy/webview-invoker",
+  "version": "0.0.1",
+  "description": "TabView for React Native",
+  "main": "index.js",
+  "keywords": [
+    "react-component",
+    "react-native",
+    "react-native-webview",
+    "react-native-webview-invoker"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:TryImpossible/react-native-diy.git"
+  },
+  "author": {
+    "name": "try",
+    "email": "865068275@qq.com",
+    "url": "https://github.com/TryImpossible"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TryImpossible/react-native-diy/issues"
+  },
+  "homepage": "https://github.com/TryImpossible/react-native-webview-invoker/blob/master/tabView/README.md"
+}
