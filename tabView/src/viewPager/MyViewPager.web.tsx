@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-import React from "react";
+import React from 'react';
 import {
   StyleSheet,
   StyleProp,
@@ -8,8 +8,11 @@ import {
   ImageURISource,
   ImageRequireSource,
   ScrollView,
-} from "react-native";
-import Scene from "./Scene";
+  Dimensions,
+} from 'react-native';
+import Scene from './Scene';
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   viewPager: {
@@ -42,7 +45,7 @@ export interface MyViewPagerProps {
   lazy?: boolean;
   lazyPreloadDistance?: number;
   renderLazyPlaceholder?: () => React.ReactNode;
-  keyboardDismissMode?: "none" | "on-drag";
+  keyboardDismissMode?: 'none' | 'on-drag';
   swipeEnabled?: boolean;
   onSwipeStart?: () => void;
   onSwipeEnd?: () => void;
@@ -56,7 +59,7 @@ class MyViewPager extends React.PureComponent<MyViewPagerProps> {
     swipeEnabled: true,
     initialIndex: 0,
     renderLazyPlaceholder: () => null,
-    keyboardDismissMode: "on-drag",
+    keyboardDismissMode: 'on-drag',
   };
 
   scrollViewRef: React.RefObject<ScrollView>;
@@ -92,9 +95,7 @@ class MyViewPager extends React.PureComponent<MyViewPagerProps> {
           });
       }
     }, 100);
-    Object.values(this.sceneRefs).forEach(
-      (ref) => ref && ref.setNativeProps({ style: { width: __WIDTH__ } })
-    );
+    Object.values(this.sceneRefs).forEach((ref) => ref && ref.setNativeProps({ style: { width: SCREEN_WIDTH } }));
   }
 
   componentWillUnmount() {
@@ -170,8 +171,7 @@ class MyViewPager extends React.PureComponent<MyViewPagerProps> {
           onPagerScroll && onPagerScroll(position, offset);
           this.selectedIndex = position;
           if (!this.visibleSceneIndexs.includes(position)) {
-            this.sceneRefs[position] &&
-              this.sceneRefs[position].onVisibilityLoad();
+            this.sceneRefs[position] && this.sceneRefs[position].onVisibilityLoad();
           }
           onIndexChange && onIndexChange(position, () => {});
         }}

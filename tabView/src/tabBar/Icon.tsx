@@ -1,13 +1,7 @@
-"use strict";
+'use strict';
 
-import React from "react";
-import {
-  StyleSheet,
-  Image,
-  StyleProp,
-  ImageStyle,
-  ImageSourcePropType,
-} from "react-native";
+import React from 'react';
+import { StyleSheet, Image, StyleProp, ImageStyle, ImageSourcePropType } from 'react-native';
 
 const styles = StyleSheet.create({
   iconStyle: {

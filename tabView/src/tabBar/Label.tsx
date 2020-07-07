@@ -1,13 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {
-  StyleSheet,
-  Animated,
-  StyleProp,
-  ViewStyle,
-  LayoutChangeEvent,
-} from 'react-native';
+import { StyleSheet, Animated, StyleProp, ViewStyle, LayoutChangeEvent } from 'react-native';
 
 const styles = StyleSheet.create({
   labelStyle: {
@@ -44,12 +38,13 @@ const Label: React.FC<LabelProps> = ({
           // color: colorValue,
           // transform: [{ scale: scaleValue }],
           color: isActive ? '#000000' : '#333333',
-          transform: [{scale: isActive ? 1.2 : 1}],
+          transform: [{ scale: isActive ? 1.2 : 1 }],
         },
         style,
       ]}
       numberOfLines={1}
-      adjustsFontSizeToFit>
+      adjustsFontSizeToFit
+    >
       {label}
     </Animated.Text>
   );

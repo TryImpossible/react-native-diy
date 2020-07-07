@@ -1,14 +1,7 @@
-import React, { PureComponent } from "react";
-import {
-  View,
-  StyleSheet,
-  StyleProp,
-  ViewStyle,
-  TextStyle,
-  Animated,
-} from "react-native";
-import ViewPager, { RouteProps, SceneProps } from "./viewPager/MyViewPager";
-import TabBar from "./tabBar/TabBar";
+import React from 'react';
+import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, Animated } from 'react-native';
+import ViewPager, { RouteProps, SceneProps } from './viewPager/MyViewPager';
+import TabBar from './tabBar/TabBar';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,7 +9,7 @@ const styles = StyleSheet.create({
   },
 });
 
-type TabBarPosition = "top" | "bottom";
+type TabBarPosition = 'top' | 'bottom';
 
 interface TabViewProps {
   style?: StyleProp<ViewStyle>;
@@ -34,27 +27,9 @@ interface TabViewProps {
   scrollEnabled?: boolean;
   bounces?: boolean;
   onTabBarPress?: (index: number) => void;
-  renderTabBarLabel?: ({
-    route,
-    isActive,
-  }: {
-    route: RouteProps;
-    isActive?: boolean;
-  }) => React.ReactNode;
-  renderTabBarIcon?: ({
-    route,
-    isActive,
-  }: {
-    route: RouteProps;
-    isActive?: boolean;
-  }) => React.ReactNode;
-  renderTabBarBadge?: ({
-    route,
-    isActive,
-  }: {
-    route: RouteProps;
-    isActive?: boolean;
-  }) => React.ReactNode;
+  renderTabBarLabel?: ({ route, isActive }: { route: RouteProps; isActive?: boolean }) => React.ReactNode;
+  renderTabBarIcon?: ({ route, isActive }: { route: RouteProps; isActive?: boolean }) => React.ReactNode;
+  renderTabBarBadge?: ({ route, isActive }: { route: RouteProps; isActive?: boolean }) => React.ReactNode;
   renderTabBarIndicator?: ({
     indexValue,
     leftValue,
@@ -66,9 +41,9 @@ interface TabViewProps {
   }) => React.ReactNode;
   renderTabBarLeftSection?: () => React.ReactNode;
   renderTabBarRightSection?: () => React.ReactNode;
-  tabBarIndicatorMode?: "tab" | "label";
+  tabBarIndicatorMode?: 'tab' | 'label';
   tabBarIndicatorWidthRatio?: number;
-  tabBarMode?: "scrollable" | "fixed";
+  tabBarMode?: 'scrollable' | 'fixed';
 
   onIndexChange?: (index: number) => void;
   renderScene: ({ route, index, jumpTo }: SceneProps) => React.ReactNode;
@@ -76,7 +51,7 @@ interface TabViewProps {
   // lazyPreloadDistance?: number;
   sceneContainerStyle?: StyleProp<ViewStyle>;
   renderLazyPlaceholder?: () => React.ReactNode;
-  keyboardDismissMode?: "on-drag" | "none";
+  keyboardDismissMode?: 'on-drag' | 'none';
   swipeEnabled?: boolean;
   onSwipeStart?: () => void;
   onSwipeEnd?: () => void;
@@ -84,25 +59,24 @@ interface TabViewProps {
   initialIndex?: number;
 }
 
-class TabView extends React.Component<TabViewProps> {
+class TabView extends React.PureComponent<TabViewProps> {
   tabBarRef: React.RefObject<TabBar> = React.createRef<TabBar>();
   viewPagerRef: React.RefObject<ViewPager> = React.createRef<ViewPager>();
 
   static defaultProps = {
-    tabBarPosition: "top",
+    tabBarPosition: 'top',
     scrollEnabled: true,
     bounces: true,
     lazy: true,
     swipeEnabled: true,
     initialIndex: 0,
-    tabBarActiveColor: "transparent",
-    tabBarInactiveColor: "transparent",
+    tabBarActiveColor: 'transparent',
+    tabBarInactiveColor: 'transparent',
   };
 
   public jumpTo(position: number): void {
     this.tabBarRef.current && this.tabBarRef.current.scrollToIndex(position);
-    this.viewPagerRef.current &&
-      this.viewPagerRef.current.scrollToIndex(position);
+    this.viewPagerRef.current && this.viewPagerRef.current.scrollToIndex(position);
   }
 
   render() {
@@ -151,8 +125,7 @@ class TabView extends React.Component<TabViewProps> {
           ref: this.tabBarRef,
           routes: navigationState,
           onTabChange: (index: number) => {
-            this.viewPagerRef.current &&
-              this.viewPagerRef.current.scrollToIndex(index);
+            this.viewPagerRef.current && this.viewPagerRef.current.scrollToIndex(index);
           },
           initialIndex,
         });
@@ -176,8 +149,7 @@ class TabView extends React.Component<TabViewProps> {
               onTabBarPress && onTabBarPress(index);
             }}
             onTabChange={(index) => {
-              this.viewPagerRef.current &&
-                this.viewPagerRef.current.scrollToIndex(index);
+              this.viewPagerRef.current && this.viewPagerRef.current.scrollToIndex(index);
             }}
             initialIndex={initialIndex}
             scrollEnabled={scrollEnabled}
@@ -194,7 +166,7 @@ class TabView extends React.Component<TabViewProps> {
 
     return (
       <View style={[styles.container, style]}>
-        {tabBarPosition === "top" && renderTabBarComponent()}
+        {tabBarPosition === 'top' && renderTabBarComponent()}
         <ViewPager
           ref={this.viewPagerRef}
           routes={navigationState}
@@ -204,8 +176,7 @@ class TabView extends React.Component<TabViewProps> {
           // lazyPreloadDistance={lazyPreloadDistance}
           renderLazyPlaceholder={renderLazyPlaceholder}
           onIndexChange={(index, callback) => {
-            this.tabBarRef.current &&
-              this.tabBarRef.current.scrollToIndex(index, callback);
+            this.tabBarRef.current && this.tabBarRef.current.scrollToIndex(index, callback);
             onIndexChange && onIndexChange(index);
           }}
           renderScene={renderScene}
@@ -215,7 +186,7 @@ class TabView extends React.Component<TabViewProps> {
           onSwipeEnd={onSwipeEnd}
           onPagerScroll={onPagerScroll}
         />
-        {tabBarPosition === "bottom" && renderTabBarComponent()}
+        {tabBarPosition === 'bottom' && renderTabBarComponent()}
       </View>
     );
   }

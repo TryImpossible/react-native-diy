@@ -1,15 +1,9 @@
-"use strict";
+'use strict';
 
-import React from "react";
-import {
-  StyleSheet,
-  StyleProp,
-  ViewStyle,
-  ImageURISource,
-  ImageRequireSource,
-} from "react-native";
-import ViewPager from "@react-native-community/viewpager";
-import Scene from "./Scene";
+import React from 'react';
+import { StyleSheet, StyleProp, ViewStyle, ImageURISource, ImageRequireSource } from 'react-native';
+import ViewPager from '@react-native-community/viewpager';
+import Scene from './Scene';
 
 const styles = StyleSheet.create({
   viewPager: {
@@ -42,7 +36,7 @@ export interface MyViewPagerProps {
   lazy?: boolean;
   lazyPreloadDistance?: number;
   renderLazyPlaceholder?: () => React.ReactNode;
-  keyboardDismissMode?: "none" | "on-drag";
+  keyboardDismissMode?: 'none' | 'on-drag';
   swipeEnabled?: boolean;
   onSwipeStart?: () => void;
   onSwipeEnd?: () => void;
@@ -56,7 +50,7 @@ class MyViewPager extends React.PureComponent<MyViewPagerProps> {
     swipeEnabled: true,
     initialIndex: 0,
     renderLazyPlaceholder: () => null,
-    keyboardDismissMode: "on-drag",
+    keyboardDismissMode: 'on-drag',
   };
 
   viewPagerRef: React.RefObject<ViewPager>;
@@ -128,17 +122,16 @@ class MyViewPager extends React.PureComponent<MyViewPagerProps> {
           // console.warn('onPageSelected');
           this.selectedIndex = position;
           if (!this.visibleSceneIndexs.includes(position)) {
-            this.sceneRefs[position] &&
-              this.sceneRefs[position].onVisibilityLoad();
+            this.sceneRefs[position] && this.sceneRefs[position].onVisibilityLoad();
           }
           onIndexChange && onIndexChange(position, () => {});
         }}
         onPageScrollStateChanged={({ nativeEvent: { pageScrollState } }) => {
           // console.warn('onPageScrollStateChanged', pageScrollState);
-          if (pageScrollState === "dragging") {
+          if (pageScrollState === 'dragging') {
             onSwipeStart && onSwipeStart();
           }
-          if (pageScrollState === "idle") {
+          if (pageScrollState === 'idle') {
             onSwipeEnd && onSwipeEnd();
           }
         }}

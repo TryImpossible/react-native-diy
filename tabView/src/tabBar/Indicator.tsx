@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {StyleSheet, Animated, StyleProp, ViewStyle} from 'react-native';
+import { StyleSheet, Animated, StyleProp, ViewStyle } from 'react-native';
 
 const styles = StyleSheet.create({
   indicator: {
@@ -21,16 +21,8 @@ interface IndicatorProps {
   widthValue?: Animated.Value;
 }
 
-const Indicator: React.FC<IndicatorProps> = ({
-  style,
-  leftValue,
-  widthValue,
-}) => {
-  return (
-    <Animated.View
-      style={[styles.indicator, {left: leftValue, width: widthValue}, style]}
-    />
-  );
+const Indicator: React.FC<IndicatorProps> = ({ style, leftValue, widthValue }) => {
+  return <Animated.View style={[styles.indicator, { left: leftValue, width: widthValue }, style]} />;
 };
 
 export default Indicator;

@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-import React from "react";
+import React from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -12,29 +12,51 @@ import {
   Easing,
   processColor,
   LayoutRectangle,
-} from "react-native";
-import TabItem, { TabItemProps, RouteProps } from "./TabItem";
-import Indicator from "./Indicator";
+} from 'react-native';
+import TabItem, { TabItemProps, RouteProps } from './TabItem';
+import Indicator from './Indicator';
 
 interface EndResult {
   finished: boolean;
 }
-
 type EndCallback = (result: EndResult) => void;
-interface CompositeAnimation {
+
+export interface CompositeAnimation {
+  /**
+   * Animations are started by calling start() on your animation.
+   * start() takes a completion callback that will be called when the
+   * animation is done or when the animation is done because stop() was
+   * called on it before it could finish.
+   *
+   * @param callback - Optional function that will be called
+   *      after the animation finished running normally or when the animation
+   *      is done because stop() was called on it before it could finish
+   *
+   * @example
+   *   Animated.timing({}).start(({ finished }) => {
+   *    // completion callback
+   *   });
+   */
   start: (callback?: EndCallback) => void;
+  /**
+   * Stops any running animation.
+   */
   stop: () => void;
+  /**
+   * Stops any running animation and resets the value to its original.
+   */
+  reset: () => void;
 }
 
 const styles = StyleSheet.create({
   tabBar: {
     minHeight: 45,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   contentContainerStyle: {
-    height: "100%",
+    height: '100%',
     paddingVertical: 8,
   },
 });
@@ -59,11 +81,7 @@ const styles = StyleSheet.create({
 //   return { inputRange, outputRange };
 // }
 
-interface TabBarProps
-  extends Omit<
-    TabItemProps,
-    "style" | "onTabLayout" | "onLabelLayout" | "onPress" | "route"
-  > {
+interface TabBarProps extends Omit<TabItemProps, 'style' | 'onTabLayout' | 'onLabelLayout' | 'onPress' | 'route'> {
   style?: StyleProp<ViewStyle>;
   contentContainerStyle?: StyleProp<ViewStyle>;
   tabStyle?: StyleProp<ViewStyle>;
@@ -71,27 +89,9 @@ interface TabBarProps
   indicatorStyle?: StyleProp<ViewStyle>;
   activeColor?: string;
   inactiveColor?: string;
-  renderLabel?: ({
-    route,
-    isActive,
-  }: {
-    route: RouteProps;
-    isActive?: boolean;
-  }) => React.ReactNode;
-  renderIcon?: ({
-    route,
-    isActive,
-  }: {
-    route: RouteProps;
-    isActive?: boolean;
-  }) => React.ReactNode;
-  renderBadge?: ({
-    route,
-    isActive,
-  }: {
-    route: RouteProps;
-    isActive?: boolean;
-  }) => React.ReactNode;
+  renderLabel?: ({ route, isActive }: { route: RouteProps; isActive?: boolean }) => React.ReactNode;
+  renderIcon?: ({ route, isActive }: { route: RouteProps; isActive?: boolean }) => React.ReactNode;
+  renderBadge?: ({ route, isActive }: { route: RouteProps; isActive?: boolean }) => React.ReactNode;
   renderIndicator?: ({
     indexValue,
     leftValue,
@@ -109,9 +109,9 @@ interface TabBarProps
   initialIndex?: number;
   onTabPress?: (index: number) => void;
   onTabChange?: (index: number) => void;
-  indicatorMode?: "tab" | "label";
+  indicatorMode?: 'tab' | 'label';
   indicatorWidthRatio?: number;
-  tabMode?: "scrollable" | "fixed";
+  tabMode?: 'scrollable' | 'fixed';
 }
 
 interface TabBarState {
@@ -123,9 +123,9 @@ class TabBar extends React.PureComponent<TabBarProps, TabBarState> {
     initialIndex: 0,
     bounces: true,
     scrollEnabled: true,
-    indicatorMode: "tab",
+    indicatorMode: 'tab',
     indicatorWidthRatio: 1,
-    tabMode: "fixed",
+    tabMode: 'fixed',
   };
 
   indexValue: Animated.Value;
@@ -146,7 +146,7 @@ class TabBar extends React.PureComponent<TabBarProps, TabBarState> {
     this.indexValue = new Animated.Value(0);
     this.indicatorWidthValue = new Animated.Value(0);
     this.indicatorLeftValue = new Animated.Value(0);
-    this.labelColorValue = new Animated.Value(processColor("#333333"));
+    this.labelColorValue = new Animated.Value(processColor('#333333'));
     this.labelScaleValue = new Animated.Value(1.5);
     this.scrollView = React.createRef<ScrollView>();
     this.scrollViewWidth = 0;
@@ -197,9 +197,7 @@ class TabBar extends React.PureComponent<TabBarProps, TabBarState> {
       return;
     }
 
-    const animated =
-      this.props.initialIndex === index ||
-      Math.abs(index - this.selectedIndex) === 1;
+    const animated = this.props.initialIndex === index || Math.abs(index - this.selectedIndex) === 1;
     const animations: Array<CompositeAnimation> = [];
     const { x, width } = this.tabItemLayout[index];
     const { width: labelWidth } = this.tabLabelLayout[index];
@@ -211,7 +209,7 @@ class TabBar extends React.PureComponent<TabBarProps, TabBarState> {
     let leftValue = x + (width - width * ratio) / 2;
     let widthValue = width * ratio;
 
-    if (indicatorMode === "label") {
+    if (indicatorMode === 'label') {
       leftValue = x + (width - labelWidth * ratio) / 2;
       widthValue = labelWidth * ratio;
     }
@@ -242,7 +240,7 @@ class TabBar extends React.PureComponent<TabBarProps, TabBarState> {
           duration: 200,
           easing: Easing.linear,
           useNativeDriver: false,
-        })
+        }),
       );
       animations.push(
         Animated.timing(this.indicatorLeftValue, {
@@ -250,7 +248,7 @@ class TabBar extends React.PureComponent<TabBarProps, TabBarState> {
           duration: 200,
           easing: Easing.linear,
           useNativeDriver: false,
-        })
+        }),
       );
       animations.push(
         Animated.timing(this.indicatorWidthValue, {
@@ -258,26 +256,26 @@ class TabBar extends React.PureComponent<TabBarProps, TabBarState> {
           duration: 200,
           easing: Easing.linear,
           useNativeDriver: false,
-        })
+        }),
       );
     } else {
       animations.push(
         Animated.timing(this.indexValue, {
           toValue: index,
           useNativeDriver: false,
-        })
+        }),
       );
       animations.push(
         Animated.timing(this.indicatorLeftValue, {
           toValue: leftValue,
           useNativeDriver: false,
-        })
+        }),
       );
       animations.push(
         Animated.timing(this.indicatorWidthValue, {
           toValue: widthValue,
           useNativeDriver: false,
-        })
+        }),
       );
     }
 
@@ -289,15 +287,12 @@ class TabBar extends React.PureComponent<TabBarProps, TabBarState> {
       // console.warn(x, pageCenterX, firstX, lastX);
 
       if (x < firstX) {
-        this.scrollView.current &&
-          this.scrollView.current.scrollTo({ x: 0, y: 0, animated: true });
+        this.scrollView.current && this.scrollView.current.scrollTo({ x: 0, y: 0, animated: true });
       } else if (x > lastX) {
-        this.scrollView.current &&
-          this.scrollView.current.scrollToEnd({ animated: true });
+        this.scrollView.current && this.scrollView.current.scrollToEnd({ animated: true });
       } else {
         const dx = x - pageCenterX;
-        this.scrollView.current &&
-          this.scrollView.current.scrollTo({ x: dx, y: 0, animated: true });
+        this.scrollView.current && this.scrollView.current.scrollTo({ x: dx, y: 0, animated: true });
       }
     }
 
@@ -333,12 +328,12 @@ class TabBar extends React.PureComponent<TabBarProps, TabBarState> {
       <View style={[styles.tabBar, style]}>
         {renderLeftSection && renderLeftSection()}
         <ScrollView
-          style={{ flex: 1, height: "100%" }}
+          style={{ flex: 1, height: '100%' }}
           ref={this.scrollView}
           contentContainerStyle={[
             styles.contentContainerStyle,
             contentContainerStyle,
-            tabMode === "fixed" ? { width: "100%" } : {},
+            tabMode === 'fixed' ? { width: '100%' } : {},
           ]}
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -358,7 +353,7 @@ class TabBar extends React.PureComponent<TabBarProps, TabBarState> {
             return (
               <TabItem
                 route={route}
-                style={[tabStyle, tabMode === "fixed" ? { flex: 1 } : {}]}
+                style={[tabStyle, tabMode === 'fixed' ? { flex: 1 } : {}]}
                 key={`TabItem${String(index)}`}
                 onTabLayout={({ nativeEvent: { layout } }) => {
                   // console.warn(`tabItem${index}Layout`, layout);
