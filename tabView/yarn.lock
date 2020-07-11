@@ -1102,10 +1102,10 @@
   resolved "https://registry.npm.taobao.org/@react-native-community/eslint-plugin/download/@react-native-community/eslint-plugin-1.1.0.tgz#e42b1bef12d2415411519fd528e64b593b1363dc"
   integrity sha1-5Csb7xLSQVQRUZ/VKOZLWTsTY9w=
 
-"@react-native-community/viewpager@^4.0.0":
-  version "4.0.1"
-  resolved "https://registry.npm.taobao.org/@react-native-community/viewpager/download/@react-native-community/viewpager-4.0.1.tgz#2136557c8ffb706b6d08c9329f19347b0a72b82d"
-  integrity sha1-ITZVfI/7cGttCMkynxk0ewpyuC0=
+"@react-native-community/viewpager@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.npm.taobao.org/@react-native-community/viewpager/download/@react-native-community/viewpager-4.1.0.tgz#b6908329a39e27e5cd3236540aadd65133420563"
+  integrity sha1-tpCDKaOeJ+XNMjZUCq3WUTNCBWM=
 
 "@types/color-name@^1.1.1":
   version "1.1.1"

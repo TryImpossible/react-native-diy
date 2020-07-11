@@ -22,7 +22,7 @@
     ]
   },
   "dependencies": {
-    "@react-native-community/viewpager": "^4.0.0",
+    "@react-native-community/viewpager": "^4.1.0",
     "react": "^16.13.1",
     "react-native": "0.62.2",
     "react-native-web": "^0.12.2"
