@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@react-native-community/viewpager": "^4.1.0",
-    "@react-native-diy/tabview": "file:../",
+    "@react-native-diy/tabview": "file:../src",
     "react": "16.11.0",
     "react-native": "0.62.2"
   },

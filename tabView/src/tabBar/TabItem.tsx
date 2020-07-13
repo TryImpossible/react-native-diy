@@ -38,8 +38,6 @@ export interface TabItemProps extends Omit<LabelProps, 'style' | 'label' | 'onLa
   style?: StyleProp<ViewStyle>;
   onTabLayout?: (event: LayoutChangeEvent) => void;
   onLabelLayout?: (event: LayoutChangeEvent) => void;
-  activeColor?: string;
-  inactiveColor?: string;
   onPress?: () => void;
   renderLabel?: ({ route, isActive }: { route: RouteProps; isActive?: boolean }) => React.ReactNode;
   labelStyle?: StyleProp<TextStyle>;
@@ -67,23 +65,14 @@ const TabItem: React.FC<TabItemProps> = ({
 }) => {
   const { title, icon, badge = 0 } = route;
   return (
-    <TouchableOpacity
-      onLayout={onTabLayout}
-      activeOpacity={1}
-      style={[
-        styles.tabStyle,
-        style,
-        {
-          backgroundColor: isActive ? activeColor : inactiveColor,
-        },
-      ]}
-      onPress={onPress}
-    >
+    <TouchableOpacity onLayout={onTabLayout} activeOpacity={1} style={[styles.tabStyle, style]} onPress={onPress}>
       {icon && ((renderIcon && renderIcon({ route, isActive })) || <Icon source={icon} />)}
       {(renderLabel && renderLabel({ route, isActive })) || (
         <Label
           style={labelStyle}
           isActive={isActive}
+          activeColor={activeColor}
+          inactiveColor={inactiveColor}
           colorValue={colorValue}
           scaleValue={scaleValue}
           label={title}

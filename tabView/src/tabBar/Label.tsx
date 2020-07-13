@@ -13,6 +13,8 @@ const styles = StyleSheet.create({
 export interface LabelProps {
   style?: StyleProp<ViewStyle>;
   isActive?: boolean;
+  activeColor?: string;
+  inactiveColor?: string;
   colorValue?: Animated.Value;
   scaleValue?: Animated.Value;
   label?: string;
@@ -24,6 +26,8 @@ const Label: React.FC<LabelProps> = ({
   //  colorValue,
   //  scaleValue,
   isActive,
+  activeColor,
+  inactiveColor,
   label,
   onLayout,
 }) => {
@@ -37,7 +41,7 @@ const Label: React.FC<LabelProps> = ({
           fontWeight: isActive ? 'bold' : 'normal',
           // color: colorValue,
           // transform: [{ scale: scaleValue }],
-          color: isActive ? '#000000' : '#333333',
+          color: isActive ? activeColor : inactiveColor,
           transform: [{ scale: isActive ? 1.2 : 1 }],
         },
         style,
@@ -52,6 +56,8 @@ const Label: React.FC<LabelProps> = ({
 
 Label.defaultProps = {
   isActive: false,
+  activeColor: '#000000',
+  inactiveColor: '#333333',
 };
 
 export default Label;

@@ -140,6 +140,7 @@ class TabBar extends React.PureComponent<TabBarProps, TabBarState> {
   tabLabelLayout: { [key: number]: LayoutRectangle } = {};
   timer: NodeJS.Timeout | null;
   selectedIndex: number;
+  pressTime: number;
 
   constructor(props: TabBarProps) {
     super(props);
@@ -154,6 +155,7 @@ class TabBar extends React.PureComponent<TabBarProps, TabBarState> {
     this.tabItemLayout = {};
     this.timer = null;
     this.selectedIndex = 0;
+    this.pressTime = 0;
 
     this.state = {
       selectedIndex: 0,
@@ -367,10 +369,13 @@ class TabBar extends React.PureComponent<TabBarProps, TabBarState> {
                 activeColor={activeColor}
                 inactiveColor={inactiveColor}
                 onPress={() => {
-                  onTabPress && onTabPress(index);
-                  this.scrollToIndex(index, () => {
-                    onTabChange && onTabChange(index);
-                  });
+                  if (Date.now() - this.pressTime >= 600) {
+                    this.pressTime = Date.now();
+                    onTabPress && onTabPress(index);
+                    this.scrollToIndex(index, () => {
+                      onTabChange && onTabChange(index);
+                    });
+                  }
                 }}
                 labelStyle={labelStyle}
                 colorValue={this.labelColorValue}

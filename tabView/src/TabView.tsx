@@ -70,8 +70,6 @@ class TabView extends React.PureComponent<TabViewProps> {
     lazy: true,
     swipeEnabled: true,
     initialIndex: 0,
-    tabBarActiveColor: 'transparent',
-    tabBarInactiveColor: 'transparent',
   };
 
   public jumpTo(position: number): void {

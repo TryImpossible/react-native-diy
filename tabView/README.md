@@ -19,44 +19,35 @@ yarn add @react-native-community/viewpager @react-native-diy/tabview
 ## 使用
 
 ```javascript
-import TabView from "@react-native-diy/tabview";
+import TabView from '@react-native-diy/tabview';
 
 <TabView
   style={{ marginTop: IS_ANDROID ? 0 : statusBarHeight }}
   navigationState={data}
-  tabBarStyle={{ borderBottomColor: "#eeeeee", borderBottomWidth: 1 }}
+  tabBarStyle={{ borderBottomColor: '#eeeeee', borderBottomWidth: 1 }}
   renderTabBarRightSection={() => (
     <View
       style={{
         width: 50,
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
-      <Image
-        style={{ width: 20, height: 20 }}
-        source={require("./arrow_down.png")}
-      />
+      <Image style={{ width: 20, height: 20 }} source={require('./arrow_down.png')} />
     </View>
   )}
   renderScene={(props) => {
     const { index } = props;
     if (index === 0) {
-      return (
-        <ChoiceScene
-          {...props}
-          switchIcon={switchIcon}
-          switchBadge={switchBadge}
-        />
-      );
+      return <ChoiceScene {...props} switchIcon={switchIcon} switchBadge={switchBadge} />;
     }
     if (index === 1) {
       return <ListScene {...props} />;
     }
     return <OtherScene {...props} />;
   }}
-  tabBarIndicatorMode={"label"}
-  tabBarMode={"scrollable"}
+  tabBarIndicatorMode={'label'}
+  tabBarMode={'scrollable'}
 />;
 ```
 
@@ -75,8 +66,8 @@ import TabView from "@react-native-diy/tabview";
 | tabBarTabStyle              | TabBar 每个 Tab 的样式                                                                                                        |
 | tabBarLabelStyle            | TabBar 每个 Label 的样式                                                                                                      |
 | tabBarIndicatorStyle        | TabBarIndicator 的样式                                                                                                        |
-| tabBarActiveColor           | TabBar 中单个 Tab 未选中的背景颜色，默认透明                                                                                  |
-| tabBarInactiveColor         | TabBar 中单个 Tab 选中的背景颜色，默认透明                                                                                    |
+| tabBarActiveColor           | TabBar 中单个 Tab 文字的颜色，默认透'#000000'                                                                                 |
+| tabBarInactiveColor         | TabBar 中单个 Tab 选中的文字的颜色，默认透'#333333'                                                                           |
 | scrollEnabled               | TabBar 是否能滚动，默认滚动                                                                                                   |
 | bounces                     | TabBar 是否启用弹性效果，默认启用                                                                                             |
 | onTabBarPress               | TabBar 单个 Tab 被选中的事件                                                                                                  |
