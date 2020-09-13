@@ -12,10 +12,20 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* splitBundleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* splitBundleTests.m */; };
+		4C96C4C5250E0FF0000E7493 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96C4C2250E0FF0000E7493 /* MainController.m */; };
+		4C96C4C6250E0FF0000E7493 /* MainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C96C4C3250E0FF0000E7493 /* MainController.xib */; };
+		4C96C4CE250E2405000E7493 /* App1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96C4CD250E2405000E7493 /* App1Controller.m */; };
+		4C96C4E3250E249F000E7493 /* app1.ios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4C96C4DF250E249F000E7493 /* app1.ios.bundle */; };
+		4C96C4E4250E249F000E7493 /* app2.ios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4C96C4E0250E249F000E7493 /* app2.ios.bundle */; };
+		4C96C4E5250E249F000E7493 /* basics.ios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4C96C4E1250E249F000E7493 /* basics.ios.bundle */; };
+		4C96C4E6250E249F000E7493 /* app3.ios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4C96C4E2250E249F000E7493 /* app3.ios.bundle */; };
+		4C96C4E9250E4DFB000E7493 /* ReactController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96C4E8250E4DFB000E7493 /* ReactController.m */; };
+		4C96C4EC250E5153000E7493 /* JSBundleBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96C4EB250E5153000E7493 /* JSBundleBean.m */; };
+		4C96C4EF250E5AF4000E7493 /* App2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96C4EE250E5AF4000E7493 /* App2Controller.m */; };
+		4C96C4F2250E5E31000E7493 /* App3Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96C4F1250E5E31000E7493 /* App3Controller.m */; };
 		4D5D6245C483E3DE824BF3D7 /* libPods-splitBundleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AFB9947CEDA0260D18290B /* libPods-splitBundleTests.a */; };
 		8668AEDCC34E1B16E16338D5 /* libPods-splitBundle-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 855DAC62778862078C513130 /* libPods-splitBundle-tvOS.a */; };
 		B54CCE8CE6F28CDE0B677EDD /* libPods-splitBundle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EAB072046C7A857147FEE56 /* libPods-splitBundle.a */; };
@@ -46,8 +56,8 @@
 		00E356F21AD99517003FC87E /* splitBundleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = splitBundleTests.m; sourceTree = "<group>"; };
 		0EAB072046C7A857147FEE56 /* libPods-splitBundle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-splitBundle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* splitBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = splitBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = splitBundle/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = splitBundle/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = splitBundle/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = splitBundle/Info.plist; sourceTree = "<group>"; };
@@ -56,6 +66,24 @@
 		2D02E4901E0B4A5D006451C7 /* splitBundle-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "splitBundle-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36ADDC2C8A5CC38CF0A464B3 /* Pods-splitBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-splitBundle.release.xcconfig"; path = "Target Support Files/Pods-splitBundle/Pods-splitBundle.release.xcconfig"; sourceTree = "<group>"; };
 		3F991314B4AC72BCDC86DB06 /* Pods-splitBundleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-splitBundleTests.release.xcconfig"; path = "Target Support Files/Pods-splitBundleTests/Pods-splitBundleTests.release.xcconfig"; sourceTree = "<group>"; };
+		4C96C4C2250E0FF0000E7493 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
+		4C96C4C3250E0FF0000E7493 /* MainController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainController.xib; sourceTree = "<group>"; };
+		4C96C4C4250E0FF0000E7493 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
+		4C96C4CB250E1AA7000E7493 /* RCTBridge+LoadJS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RCTBridge+LoadJS.h"; sourceTree = "<group>"; };
+		4C96C4CC250E2405000E7493 /* App1Controller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = App1Controller.h; sourceTree = "<group>"; };
+		4C96C4CD250E2405000E7493 /* App1Controller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = App1Controller.m; sourceTree = "<group>"; };
+		4C96C4DF250E249F000E7493 /* app1.ios.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = app1.ios.bundle; sourceTree = "<group>"; };
+		4C96C4E0250E249F000E7493 /* app2.ios.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = app2.ios.bundle; sourceTree = "<group>"; };
+		4C96C4E1250E249F000E7493 /* basics.ios.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basics.ios.bundle; sourceTree = "<group>"; };
+		4C96C4E2250E249F000E7493 /* app3.ios.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = app3.ios.bundle; sourceTree = "<group>"; };
+		4C96C4E7250E4DFB000E7493 /* ReactController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReactController.h; sourceTree = "<group>"; };
+		4C96C4E8250E4DFB000E7493 /* ReactController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactController.m; sourceTree = "<group>"; };
+		4C96C4EA250E5153000E7493 /* JSBundleBean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSBundleBean.h; sourceTree = "<group>"; };
+		4C96C4EB250E5153000E7493 /* JSBundleBean.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSBundleBean.m; sourceTree = "<group>"; };
+		4C96C4ED250E5AF4000E7493 /* App2Controller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = App2Controller.h; sourceTree = "<group>"; };
+		4C96C4EE250E5AF4000E7493 /* App2Controller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = App2Controller.m; sourceTree = "<group>"; };
+		4C96C4F0250E5E31000E7493 /* App3Controller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = App3Controller.h; sourceTree = "<group>"; };
+		4C96C4F1250E5E31000E7493 /* App3Controller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = App3Controller.m; sourceTree = "<group>"; };
 		585D8ABBD80F0BDF73854D12 /* Pods-splitBundle-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-splitBundle-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-splitBundle-tvOSTests/Pods-splitBundle-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E9BB1E21790581B790723C5 /* Pods-splitBundle-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-splitBundle-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-splitBundle-tvOS/Pods-splitBundle-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6EF85A53732E59ADE9B39D46 /* libPods-splitBundle-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-splitBundle-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,9 +153,10 @@
 		13B07FAE1A68108700A75B9A /* splitBundle */ = {
 			isa = PBXGroup;
 			children = (
+				4C96C4F4250E5F30000E7493 /* ui */,
+				4C96C4F3250E5F08000E7493 /* react */,
+				4C96C4C1250E0FF0000E7493 /* pubilc */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
-				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -161,8 +190,48 @@
 				D8DC5B170633750B21F243D8 /* Pods-splitBundleTests.debug.xcconfig */,
 				3F991314B4AC72BCDC86DB06 /* Pods-splitBundleTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		4C96C4C1250E0FF0000E7493 /* pubilc */ = {
+			isa = PBXGroup;
+			children = (
+				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				4C96C4C2250E0FF0000E7493 /* MainController.m */,
+				4C96C4C3250E0FF0000E7493 /* MainController.xib */,
+				4C96C4C4250E0FF0000E7493 /* MainController.h */,
+			);
+			path = pubilc;
+			sourceTree = "<group>";
+		};
+		4C96C4F3250E5F08000E7493 /* react */ = {
+			isa = PBXGroup;
+			children = (
+				4C96C4CB250E1AA7000E7493 /* RCTBridge+LoadJS.h */,
+				4C96C4E7250E4DFB000E7493 /* ReactController.h */,
+				4C96C4E8250E4DFB000E7493 /* ReactController.m */,
+				4C96C4EA250E5153000E7493 /* JSBundleBean.h */,
+				4C96C4EB250E5153000E7493 /* JSBundleBean.m */,
+			);
+			path = react;
+			sourceTree = "<group>";
+		};
+		4C96C4F4250E5F30000E7493 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				4C96C4DF250E249F000E7493 /* app1.ios.bundle */,
+				4C96C4E0250E249F000E7493 /* app2.ios.bundle */,
+				4C96C4E2250E249F000E7493 /* app3.ios.bundle */,
+				4C96C4E1250E249F000E7493 /* basics.ios.bundle */,
+				4C96C4CC250E2405000E7493 /* App1Controller.h */,
+				4C96C4CD250E2405000E7493 /* App1Controller.m */,
+				4C96C4ED250E5AF4000E7493 /* App2Controller.h */,
+				4C96C4EE250E5AF4000E7493 /* App2Controller.m */,
+				4C96C4F0250E5E31000E7493 /* App3Controller.h */,
+				4C96C4F1250E5E31000E7493 /* App3Controller.m */,
+			);
+			path = ui;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -308,6 +377,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -337,7 +407,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				4C96C4E6250E249F000E7493 /* app3.ios.bundle in Resources */,
+				4C96C4E4250E249F000E7493 /* app2.ios.bundle in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				4C96C4E5250E249F000E7493 /* basics.ios.bundle in Resources */,
+				4C96C4E3250E249F000E7493 /* app1.ios.bundle in Resources */,
+				4C96C4C6250E0FF0000E7493 /* MainController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,7 +446,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -529,7 +604,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				4C96C4CE250E2405000E7493 /* App1Controller.m in Sources */,
+				4C96C4E9250E4DFB000E7493 /* ReactController.m in Sources */,
+				4C96C4F2250E5E31000E7493 /* App3Controller.m in Sources */,
+				4C96C4C5250E0FF0000E7493 /* MainController.m in Sources */,
+				4C96C4EC250E5153000E7493 /* JSBundleBean.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				4C96C4EF250E5AF4000E7493 /* App2Controller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,7 +619,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
-				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

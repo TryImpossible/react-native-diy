@@ -1,0 +1,4 @@
+__d(function(g,r,i,a,m,e,d){var n=r(d[0]),t=r(d[1]),p=n(r(d[2]));t.AppRegistry.registerComponent('app2',function(){return p.default})},200000,[12,6,200001]);
+__d(function(g,r,i,a,m,e,d){var t=r(d[0]),n=r(d[1]);Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var u=n(r(d[2])),l=n(r(d[3])),f=n(r(d[4])),c=n(r(d[5])),o=n(r(d[6])),h=t(r(d[7])),s=r(d[8]),y=s.StyleSheet.create({container:{width:'100%',height:'100%',alignItems:'center',justifyContent:'center'}}),v=(function(t){function n(){return(0,u.default)(this,n),(0,f.default)(this,(0,c.default)(n).apply(this,arguments))}return(0,o.default)(n,t),(0,l.default)(n,[{key:"render",value:function(){return h.default.createElement(s.View,{style:y.container},h.default.createElement(s.Text,null,"RN\u4e1a\u52a1\u6a21\u57572"))}}]),n})(h.Component);e.default=v},200001,[14,12,28,29,41,43,46,2,6]);
+__r(91);
+__r(200000);
