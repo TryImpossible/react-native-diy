@@ -39,12 +39,25 @@ function initData() {
     fs.mkdirSync(recordPath);
   }
 
+  let entryConfig = fs.readFileSync(entryConfigFilePath, 'utf-8');
+  if (!entryConfig) {
+    logger.error('\n' + 'entryConfig.json中缺少打包入口文件，请添加');
+    process.exit();
+  }
+  entryConfig = JSON.parse(entryConfig);
+  logger.info(
+    '\n' + 'entryFilePath: ' + entryConfig.path,
+    'entryFileName: ' + entryConfig.name,
+    'entryFilePrefix: ' + entryConfig.prefix,
+  );
+
   // 查找过滤的基准包
   let filterConfig = fs.readFileSync(filterConfigFilePath, 'utf-8');
   filterConfig = JSON.parse(filterConfig);
   const filterConfigFiles = filterConfig.map(item => {
     const fileName =
-      item.substring(0, item.indexOf('.')) + 'ModuleToIdMap.json';
+      item.substring(0, item.indexOf('.')) +
+      `ModuleToIdMap.${entryConfig.platform}.json`;
     return path.join(recordPath, fileName);
   });
   // 遍历过滤的基准包，合并所有待过滤ModuleToId
@@ -60,25 +73,16 @@ function initData() {
     }
   });
 
-  let entryConfig = fs.readFileSync(entryConfigFilePath, 'utf-8');
-  if (!entryConfig) {
-    logger.error('\n' + 'entryConfig.json中缺少打包入口文件，请添加');
-    process.exit();
-  }
-  entryConfig = JSON.parse(entryConfig);
-  logger.info(
-    '\n' + 'entryFilePath: ' + entryConfig['path'],
-    'entryFileName: ' + entryConfig['name'],
-    'entryFilePrefix: ' + entryConfig['prefix'],
-  );
-
-  // 修改`${entryFile}ModuleToIdMap.json`文件名
-  const fileName = entryConfig['prefix'] + 'ModuleToIdMap.json';
+  // 修改`${entryFile}ModuleToIdMap.${platform}.json`文件名
+  const fileName =
+    entryConfig.prefix + `ModuleToIdMap.${entryConfig.platform}.json`;
   // entryFile的module和id的映射文件
   moduleToIdMapFilePath = path.join(recordPath, fileName);
+  // 清除上次的记录
+  fs.writeFileSync(moduleToIdMapFilePath, JSON.stringify({}, null, 2));
 
   // 当前的moduleId，默认根据entryFile取moduleIdConfig.json中的初始值
-  const currentModuleId = require(moduleIdConfigFilePath)[entryConfig['name']];
+  const currentModuleId = require(moduleIdConfigFilePath)[entryConfig.name];
   if (typeof currentModuleId !== 'number') {
     logger.error('\n' + 'moduleIdConfig.json中缺少模块索引，请添加');
     process.exit();
@@ -116,7 +120,10 @@ function createModuleIdFactory() {
       }
     }
     // 根据modulepath的相对路径查找对应id
-    const relativePath = path.relative(projectRoot, modulepath);
+    const reg = new RegExp(path.sep, 'gm');
+    const relativePath = path
+      .relative(projectRoot, modulepath)
+      .replace(reg, '/');
     const currentModuleId = allModuleToIdMap[relativePath];
 
     if (typeof currentModuleId === 'number') {
@@ -163,7 +170,7 @@ function processModuleFilter(module) {
     // 过滤基准包中module和id的映射为空，则不过滤当前entryFile
     return true;
   }
-  const modulepath = module['path'];
+  const modulepath = module.path;
   if (
     modulepath.indexOf(path.join('__prelude__')) >= 0 ||
     modulepath.indexOf(
@@ -178,7 +185,7 @@ function processModuleFilter(module) {
   if (modulepath.indexOf(path.join('/node_modules/')) > 0) {
     // 输出类型为js/script/virtual的模块不能过滤，一般此类型的文件为核心文件，
     // 如InitializeCore.js。每次加载bundle文件时都需要用到。
-    if (path.join('js/script/virtual') == module['output'][0]['type']) {
+    if (path.join('js/script/virtual') === module.output[0].type) {
       return true;
     }
   }
@@ -207,6 +214,19 @@ module.exports = {
   serializer: {
     createModuleIdFactory: createModuleIdFactory,
     processModuleFilter: processModuleFilter,
+    // processModuleFilter: module => {
+    //   let allMoudle = [];
+    //   const allMoudlePath = path.join(__dirname, 'module.json');
+    //   if (fs.existsSync(allMoudlePath)) {
+    //     const content = fs.readFileSync(allMoudlePath);
+    //     allMoudle = JSON.parse(content);
+    //   }
+    //   const modulepath = path.relative(projectRoot, module.path);
+    //   if (!allMoudle.includes(modulepath)) {
+    //     allMoudle.push(modulepath);
+    //   }
+    //   fs.writeFileSync(allMoudlePath, JSON.stringify(module, null, 2));
+    // },
     // getModulesRunBeforeMainModule: getModulesRunBeforeMainModule,
   },
 };

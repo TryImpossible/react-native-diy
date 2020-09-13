@@ -41,11 +41,15 @@ function input(prompt, isAutoClose = true) {
 }
 
 function buildCmd(platform, entryFilePath, prefix) {
-  return `react-native bundle --dev false --platform ${platform} --entry-file ${entryFilePath} --bundle-output ./dist/${platform}/${prefix}.${platform}.bundle --assets-dest ./dist/${platform} --minify true --config split_bundle/metro.config.js --verbose true`;
+  return `npx react-native bundle --dev false --platform ${platform} --entry-file ${entryFilePath} --bundle-output ./dist/${platform}/${prefix}.${platform}.bundle --assets-dest ./dist/${platform} --minify true --config split_bundle/metro.config.js --verbose true`;
 }
 
 function main(filterFiles, entryFilePath, platform) {
-  logger.info('filterFiles: ' + filterFiles, 'entryFilePath: ' + entryFilePath);
+  logger.info(
+    'filterFiles: ' + filterFiles,
+    'entryFilePath: ' + entryFilePath,
+    'plaform: ' + platform,
+  );
 
   let filterConfig = [];
   if (filterFiles) {
@@ -70,6 +74,7 @@ function main(filterFiles, entryFilePath, platform) {
           path: entryFilePath,
           name: fileName,
           prefix: prefix,
+          platform,
         },
         null,
         2,
@@ -81,7 +86,11 @@ function main(filterFiles, entryFilePath, platform) {
     if (fs.existsSync(moduleIdConfigFilePath)) {
       moduleIdConfig = fs.readFileSync(moduleIdConfigFilePath, 'utf-8');
       moduleIdConfig = JSON.parse(moduleIdConfig);
-      if (typeof moduleIdConfig === 'object' && !moduleIdConfig[fileName]) {
+      if (
+        typeof moduleIdConfig === 'object' &&
+        !Object.keys(moduleIdConfig).includes(fileName)
+      ) {
+        // 检测是否配置moduleId
         const ids = Object.values(moduleIdConfig);
         if (ids.length > 0) {
           moduleIdConfig[fileName] = Math.max(...ids) + 100000;
@@ -100,7 +109,7 @@ function main(filterFiles, entryFilePath, platform) {
     try {
       logger.info('---开始打包---\n');
 
-      const buildPlatformCmd = function(platform) {
+      const buildPlatformCmd = function() {
         return buildCmd(platform, entryFilePath, prefix);
       };
       let cmd;
@@ -146,6 +155,6 @@ function main(filterFiles, entryFilePath, platform) {
 //  * 命令行参数
 //  */
 // (function() {
-//   [filterFiles, entryFilePath, platform] = process.argv.splice(2);
+//   const [filterFiles, entryFilePath, platform] = process.argv.splice(2);
 //   main(filterFiles, entryFilePath, platform);
 // })();

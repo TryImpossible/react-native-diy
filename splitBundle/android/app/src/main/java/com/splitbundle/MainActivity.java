@@ -1,4 +1,4 @@
-package com.splitbundle.ui;
+package com.splitbundle;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,9 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.bridge.CatalystInstance;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.soloader.SoLoader;
-import com.splitbundle.MainApplication;
-import com.splitbundle.R;
+import com.splitbundle.ui.App1Activity;
+import com.splitbundle.ui.App2Activity;
+import com.splitbundle.ui.App3Activity;
 import com.splitbundle.utils.JSBundleLoaderUtil;
 
 import androidx.annotation.Nullable;

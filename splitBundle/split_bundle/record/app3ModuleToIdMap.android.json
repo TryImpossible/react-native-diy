@@ -1,0 +1,9 @@
+{
+  "src/app3.js": 300000,
+  "src/business3/index.js": 300001,
+  "src/business3/Label/index.js": 300002,
+  "src/business3/Label/Label.ios.js": 300003,
+  "src/business3/Label/Label.android.js": 300004,
+  "src/business2/index.js": 300005,
+  "node_modules/metro/src/lib/bundle-modules/asyncRequire.js": 300006
+}

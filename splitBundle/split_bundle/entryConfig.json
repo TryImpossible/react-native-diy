@@ -1,5 +1,6 @@
 {
   "path": "./src/basics.js",
   "name": "basics.js",
-  "prefix": "basics"
+  "prefix": "basics",
+  "platform": "android"
 }

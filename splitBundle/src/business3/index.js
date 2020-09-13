@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, Button} from 'react-native';
+import Label from './Label';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,13 +29,14 @@ class Business extends Component {
           title="嵌入业务模块2"
           onPress={() => {
             import('../business2').then(module => {
-              Business2 = module['default'];
+              Business2 = module.default;
               this.setState({
                 isShow: true,
               });
             });
           }}
         />
+        <Label />
       </View>
     );
   }
