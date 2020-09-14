@@ -27,11 +27,16 @@
   
   JSBundleBean *jsBundle = [self getLoaderType];
   if (jsBundle != nil) {
-    NSRange range = [jsBundle.url rangeOfString:@"." options:NSBackwardsSearch];
-    NSString *fileName = [jsBundle.url substringToIndex:range.location];
-    NSString *extension = [jsBundle.url substringFromIndex:range.location + 1];
-    NSData *sourceCode = [[NSData alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:fileName withExtension:extension]];
-    [app.bridge.batchedBridge executeSourceCode:sourceCode sync:YES];
+    #if DEBUG
+    app.bridge = [[RCTBridge alloc] initWithBundleURL:[[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil] moduleProvider:nil launchOptions:nil];
+    #else
+       NSRange range = [jsBundle.url rangeOfString:@"." options:NSBackwardsSearch];
+       NSString *fileName = [jsBundle.url substringToIndex:range.location];
+       NSString *extension = [jsBundle.url substringFromIndex:range.location + 1];
+       NSData *sourceCode = [[NSData alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:fileName withExtension:extension]];
+       [app.bridge.batchedBridge executeSourceCode:sourceCode sync:YES];
+    #endif
+   
   }
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:app.bridge moduleName: [self getMainComponentName] initialProperties: [self getInitialProperties]];
   
