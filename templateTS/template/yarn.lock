@@ -5246,14 +5246,9 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@^2.0.2:
+prettier@^2.0.2, prettier@^2.0.5:
   version "2.0.5"
   resolved "https://registry.npm.taobao.org/prettier/download/prettier-2.0.5.tgz#d6d56282455243f2f92cc1716692c08aa31522d4"
-  integrity sha1-1tVigkVSQ/L5LMFxZpLAiqMVItQ=
-
-prettier@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.npm.taobao.org/prettier/download/prettier-2.0.5.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fprettier%2Fdownload%2Fprettier-2.0.5.tgz#d6d56282455243f2f92cc1716692c08aa31522d4"
   integrity sha1-1tVigkVSQ/L5LMFxZpLAiqMVItQ=
 
 pretty-format@^24.7.0, pretty-format@^24.9.0:
@@ -6446,9 +6441,9 @@ typescript@^3.8.3:
   integrity sha1-jz4BmKNMOuFwkbNVcdOv0xmZNlo=
 
 ua-parser-js@^0.7.18:
-  version "0.7.21"
-  resolved "https://registry.npm.taobao.org/ua-parser-js/download/ua-parser-js-0.7.21.tgz#853cf9ce93f642f67174273cc34565ae6f308777"
-  integrity sha1-hTz5zpP2QvZxdCc8w0Vlrm8wh3c=
+  version "0.7.28"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
+  integrity sha512-6Gurc1n//gjp9eQNXjD9O3M/sMwVtN5S8Lv9bvOYBfKfDNiIIhqiyi01vMBO45u4zkDE420w/e0se7Vs+sIg+g==
 
 uglify-es@^3.1.9:
   version "3.3.9"
